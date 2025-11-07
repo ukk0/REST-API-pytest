@@ -15,10 +15,6 @@ def build_token_header(cookie: str):
     return {"Cookie": f"token={cookie}"}
 
 
-def build_query_params(**kwargs: Any) -> Dict[str, Any]:
-    return dict(**kwargs)
-
-
 def build_booking(
     fname: str = "Testy",
     lname: str = "McTester",
