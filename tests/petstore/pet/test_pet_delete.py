@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_delete_pet_success():
     """DELETE /pet/{petId}, delete an existing pet."""
     pass

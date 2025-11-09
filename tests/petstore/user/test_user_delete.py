@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_delete_user_success():
     """DELETE /user/{username}, delete user successfully."""
     pass

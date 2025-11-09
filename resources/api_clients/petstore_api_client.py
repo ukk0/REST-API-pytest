@@ -25,9 +25,13 @@ class PetStoreAPIClient(BaseClient):
             url=f"pet/{pet_id}", headers=self._add_headers(), method="GET"
         )
 
-    def get_pet_by_status(self, query_params: Optional[Dict[str, str]] = None) -> Response:
+    def get_pet_by_status(
+        self, query_params: Optional[Dict[str, str]] = None
+    ) -> Response:
         return self._api_request(
-            url=self._add_params_to_url(url="pet/findPetsByStatus", params=query_params),
+            url=self._add_params_to_url(
+                url="pet/findPetsByStatus", params=query_params
+            ),
             headers=self._add_headers(),
             method="GET",
         )
@@ -41,7 +45,9 @@ class PetStoreAPIClient(BaseClient):
 
     def get_store_inventory(self) -> Response:
         return self._api_request(
-            url="store/inventory", headers=self._add_headers(), method="GET",
+            url="store/inventory",
+            headers=self._add_headers(),
+            method="GET",
         )
 
     def get_order_by_id(self, order_id: str) -> Response:
@@ -53,4 +59,3 @@ class PetStoreAPIClient(BaseClient):
         return self._api_request(
             url=f"store/order/{order_id}", headers=self._add_headers(), method="DELETE"
         )
-

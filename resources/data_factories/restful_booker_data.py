@@ -1,7 +1,7 @@
 from typing import Any, Dict, Optional
 
 
-def build_token_auth(
+def build_auth_payload(
     username: str = "admin", password: str = "password123"
 ) -> Dict[str, Any]:
     return {"username": username, "password": password}

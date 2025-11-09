@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_update_existing_pet_put_success():
     """PUT /pet, update existing pet fully."""
     pass

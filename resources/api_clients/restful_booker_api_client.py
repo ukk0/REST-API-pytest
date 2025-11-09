@@ -3,7 +3,6 @@ from typing import Any, Dict, Optional
 from requests import Response
 
 from resources.api_clients.base_api_client import BaseClient
-from resources.data_factories.restful_booker_data import build_token_auth
 
 
 class RestfulAPIClient(BaseClient):
@@ -11,12 +10,12 @@ class RestfulAPIClient(BaseClient):
         base_url = "https://restful-booker.herokuapp.com/"
         super().__init__(base_url)
 
-    def _get_auth_token(self) -> Response:
+    def fetch_auth_token(self, payload: Dict[str, Any]) -> Response:
         return self._api_request(
             url="auth",
             headers=self._add_headers(),
             method="POST",
-            json=build_token_auth(),
+            json=payload,
         )
 
     def ping_api(self) -> Response:
@@ -55,7 +54,9 @@ class RestfulAPIClient(BaseClient):
             json=request_payload,
         )
 
-    def delete_booking_by_id(self, booking_id: str, auth_header: Dict[str, str]) -> Response:
+    def delete_booking_by_id(
+        self, booking_id: str, auth_header: Dict[str, str]
+    ) -> Response:
         return self._api_request(
             url=f"booking/{booking_id}",
             headers=self._add_headers(auth_header=auth_header),

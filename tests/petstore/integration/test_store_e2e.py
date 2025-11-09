@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_full_pet_lifecycle():
     """
     POST /pet - GET /pet/{id} - PUT /pet - DELETE /pet

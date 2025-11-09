@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_update_user_success():
     """PUT /user/{username}, update existing user."""
     pass
