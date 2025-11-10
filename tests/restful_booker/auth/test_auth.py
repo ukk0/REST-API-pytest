@@ -4,7 +4,9 @@ from resources.data_factories import build_auth_payload
 
 
 def test_generate_token_valid_credentials(restful_client):
-    """POST /auth => valid username/password should return 200 status and a token."""
+    """
+    POST /auth => valid username/password should return 200 status and a token.
+    """
     response = restful_client.fetch_auth_token(payload=build_auth_payload())
     assert response.status_code == 200
     assert response.json()["token"]
@@ -18,12 +20,15 @@ def test_generate_token_valid_credentials(restful_client):
         ("username", None, 200),
         (None, "wrong_password", 200),
     ],
+    ids=["wrong_pw", "invalid_user", "missing_pw", "missing_user"],
 )
 def test_generate_token_wrong_or_missing_credentials(
     restful_client, username, password, status_code
 ):
-    """POST /auth => wrong/missing username/password should fail.
-    NOTE: The endpoint incorrectly returns status code 200 for bad request."""
+    """
+    POST /auth => wrong/missing username/password should fail.
+    NOTE: The endpoint incorrectly returns status code 200 for bad request.
+    """
     response = restful_client.fetch_auth_token(
         payload=build_auth_payload(username=username, password=password)
     )

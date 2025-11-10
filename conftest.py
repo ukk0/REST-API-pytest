@@ -1,10 +1,10 @@
 import pytest
 
-from resources.api_clients import RestfulAPIClient, PetStoreAPIClient
+from resources.api_clients import PetStoreAPIClient, RestfulAPIClient
 from resources.data_factories import (build_api_key_header, build_auth_payload,
-                                      build_token_header)
+                                      build_booking, build_token_header)
 
-FAKE_API_KEY = "YWRtaW46cGFzc3dvcmQxMjM=]"
+FAKE_API_KEY = "YWRtaW46cGFzc3dvcmQxMjM="
 
 
 @pytest.fixture(scope="session")
@@ -30,3 +30,8 @@ def api_key_auth():
 @pytest.fixture(scope="session")
 def token_auth(auth_token):
     return build_token_header(cookie=auth_token)
+
+
+@pytest.fixture(scope="function")
+def valid_booking_id(restful_client):
+    return restful_client.create_booking(build_booking()).json()["bookingid"]

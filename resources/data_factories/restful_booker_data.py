@@ -44,3 +44,16 @@ def build_booking(
     if partial:
         return dict(**overrides)
     return payload
+
+
+def booking_fields():
+    return [
+        "firstname",
+        "lastname",
+        "totalprice",
+        "depositpaid",
+        "bookingdates",
+        "checkin",
+        "checkout",
+        "additionalneeds",
+    ]
