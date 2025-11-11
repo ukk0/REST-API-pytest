@@ -44,14 +44,14 @@ class RestfulAPIClient(BaseClient):
         self,
         booking_id: str,
         auth_header: Dict[str, str],
-        request_payload: Dict[str, Any],
+        payload: Dict[str, Any],
         partial_update: bool = False,
     ) -> Response:
         return self._api_request(
             url=f"booking/{booking_id}",
             headers=self._add_headers(auth_header=auth_header),
             method="PATCH" if partial_update else "PUT",
-            json=request_payload,
+            json=payload,
         )
 
     def delete_booking_by_id(
