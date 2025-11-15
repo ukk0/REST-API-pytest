@@ -26,9 +26,10 @@ def build_booking(
     partial: bool = False,
     **overrides,
 ) -> Dict[str, Any]:
-    """Builds booking payload for POST, PUT, or PATCH.
-    - POST / PUT: return full payload
-    - PATCH: set partial=True and pass only changed fields via overrides
+    """
+    Builds booking payload for POST, PUT, or PATCH.
+    POST / PUT: return full payload
+    PATCH: set partial=True and pass only changed fields via overrides
     """
     payload = {
         "firstname": fname,

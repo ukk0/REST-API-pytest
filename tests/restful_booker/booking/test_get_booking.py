@@ -3,6 +3,8 @@ import pytest
 from resources.data_factories import booking_fields
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_get_booking_by_valid_id(restful_client, valid_booking_id):
     """
     GET /booking/{id}, retrieve full booking details for a valid id.
@@ -18,6 +20,8 @@ def test_get_booking_by_valid_id(restful_client, valid_booking_id):
             assert field in json_response
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "booking_id, expected_status",
     [
@@ -36,6 +40,7 @@ def test_get_booking_by_id_variations(restful_client, booking_id, expected_statu
     assert response.status_code == expected_status
 
 
+@pytest.mark.regression
 def test_get_all_booking_ids(restful_client):
     """
     GET /booking, should return list of booking ids.
@@ -45,6 +50,7 @@ def test_get_all_booking_ids(restful_client):
     assert isinstance(response.json(), list)
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "query_params, status_code",
     [

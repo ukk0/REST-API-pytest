@@ -3,6 +3,8 @@ import pytest
 from resources.data_factories import build_api_key_header, build_token_header
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "auth_method", ["api_key", "token_auth"], ids=["valid_api_key", "valid_token"]
 )
@@ -25,6 +27,7 @@ def test_delete_booking_valid(
         assert response.status_code == 201
 
 
+@pytest.mark.regression
 def test_delete_booking_invalid(restful_client, api_key_auth, valid_booking_id):
     """
     DELETE /booking/{id}, test deletion for non-existing / already deleted id.
@@ -40,6 +43,7 @@ def test_delete_booking_invalid(restful_client, api_key_auth, valid_booking_id):
     )
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "auth_method",
     ["api_key", "token_auth", "no_auth"],

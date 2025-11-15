@@ -1,3 +1,7 @@
+import pytest
+
+
+@pytest.mark.smoke
 def test_ping_response(restful_client):
     """
     GET /ping, should return 201 status.

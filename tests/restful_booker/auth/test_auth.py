@@ -3,6 +3,8 @@ import pytest
 from resources.data_factories import build_auth_payload
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_generate_token_valid_credentials(restful_client):
     """
     POST /auth => valid username/password should return 200 status and a token.
@@ -12,6 +14,8 @@ def test_generate_token_valid_credentials(restful_client):
     assert response.json()["token"]
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "username, password, status_code",
     [

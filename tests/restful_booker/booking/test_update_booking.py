@@ -4,6 +4,8 @@ from resources.data_factories import (build_api_key_header, build_booking,
                                       build_token_header)
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "auth_method", ["api_key", "token_auth"], ids=["valid_api_key", "valid_token"]
 )
@@ -36,6 +38,8 @@ def test_update_booking_put_valid(
     assert update_payload == response.json()
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "auth_method", ["api_key", "token_auth"], ids=["valid_api_key", "valid_token"]
 )
@@ -68,6 +72,9 @@ def test_update_booking_patch_valid(
     assert update_payload["totalprice"] == response.json()["totalprice"]
 
 
+@pytest.mark.skip(
+    reason="Known API issue: Endpoint returns 200 and ignores unsupported values."
+)
 @pytest.mark.parametrize(
     "update_payload",
     [
@@ -76,7 +83,6 @@ def test_update_booking_patch_valid(
         {"depositpaid": "Yes"},
     ],
 )
-@pytest.mark.skip(reason="Known API issue: Endpoint returns 200 and ignores unsupported values.")
 def test_partial_update_with_invalid_value(
     restful_client, valid_booking_id, api_key_auth, update_payload
 ):
@@ -92,6 +98,7 @@ def test_partial_update_with_invalid_value(
     assert response.status_code == 400
 
 
+@pytest.mark.regression
 def test_update_booking_with_invalid_payload(
     restful_client, valid_booking_id, api_key_auth
 ):
@@ -107,6 +114,7 @@ def test_update_booking_with_invalid_payload(
     assert response.status_code == 400
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "auth_method, partial",
     [

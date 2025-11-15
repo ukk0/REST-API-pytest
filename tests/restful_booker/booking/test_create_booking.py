@@ -3,6 +3,8 @@ import pytest
 from resources.data_factories import build_booking
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_create_booking_valid(restful_client):
     """
     POST /booking, create new booking with valid payload.
@@ -17,6 +19,7 @@ def test_create_booking_valid(restful_client):
         assert booking_payload[k] == json_response["booking"][k]
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "fname, lname, price, deposit_paid",
     [
@@ -40,6 +43,7 @@ def test_create_booking_missing_required_values(
     assert response.status_code == 500
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "field_to_remove",
     ["firstname", "lastname", "totalprice", "depositpaid", "bookingdates"],
