@@ -8,7 +8,7 @@ from resources.data_factories import build_query_params
 
 class PetStoreAPIClient(BaseClient):
     def __init__(self):
-        base_url = "https://petstore.swagger.io/v2/"
+        base_url = "https://petstore.swagger.io/v2"
         super().__init__(base_url)
 
     def create_pet(self, payload: Dict[str, Any]) -> Response:
