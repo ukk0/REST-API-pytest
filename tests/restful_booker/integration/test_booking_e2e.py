@@ -70,8 +70,6 @@ def test_booking_create_get_update(restful_client, api_key_auth):
     assert (
         get_response_json["firstname"] != create_response_json["booking"]["firstname"]
     )
-    assert (
-        get_response_json["lastname"] != create_response_json["booking"]["lastname"]
-    )
+    assert get_response_json["lastname"] != create_response_json["booking"]["lastname"]
     assert get_response_json["firstname"] == patch_response_json["firstname"]
     assert get_response_json["lastname"] == patch_response_json["lastname"]
