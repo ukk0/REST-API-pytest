@@ -1,0 +1,38 @@
+name: API pytest JUnit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run pytest
+        run: pytest -n auto --junitxml=reports/pytest_results.xml
+
+      - name: Upload report
+        uses: actions/upload-artifact@v5
+        with:
+          name: pytest-junit-results
+          path: reports/pytest_results.xml
+          retention-days: 1
