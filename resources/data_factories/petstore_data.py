@@ -32,7 +32,7 @@ def build_order(
         "id": order_id,
         "petId": pet_id,
         "quantity": quantity,
-        "shipDate": f"{shipdate}T00:00:00Z",
+        "shipDate": f"{shipdate}T00:00:00.000+0000",
         "status": status,
         "complete": complete,
     }
