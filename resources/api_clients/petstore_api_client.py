@@ -42,7 +42,7 @@ class PetStoreAPIClient(BaseClient):
     ) -> Response:
         return self._api_request(
             url=self._add_params_to_url(
-                url="pet/findPetsByStatus", params=query_params
+                url="pet/findByStatus", params=query_params
             ),
             headers=self._add_headers(),
             method="GET",

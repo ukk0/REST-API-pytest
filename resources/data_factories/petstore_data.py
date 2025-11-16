@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 
 def build_pet(
-    pet_id: str = randint(50, 100),
+    pet_id: str = randint(500, 1000),
     name: str = "Koira",
     photo_url: str = "pets.com/dog.png",
     status: str = "available",
