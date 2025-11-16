@@ -3,6 +3,8 @@ import pytest
 from resources.data_factories import build_query_params
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize("status", ["available", "pending", "sold"])
 def test_find_pets_by_status(petstore_client, status):
     """
@@ -16,6 +18,8 @@ def test_find_pets_by_status(petstore_client, status):
         assert pet["status"] == status
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_get_pet_by_id(petstore_client, valid_pet_id):
     """
     GET /pet/{petId}, successful response for existing pet.
@@ -30,6 +34,7 @@ def test_get_pet_by_id(petstore_client, valid_pet_id):
     assert response_json["status"] == "available"
 
 
+@pytest.mark.regression
 @pytest.mark.parametrize(
     "pet_id, status_code", [
         (100000000000, 404),
