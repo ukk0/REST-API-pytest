@@ -170,3 +170,22 @@ def test_update_booking_without_valid_auth_should_fail(
             partial_update=partial,
         )
         assert response.status_code == 403
+
+
+@pytest.mark.smoke
+@pytest.mark.regression
+@pytest.mark.parametrize(
+    "partial", [True, False],
+    ids=["partial_update", "full_update"],
+)
+def test_update_booking_missing_payload(restful_client, valid_booking_id, api_key_auth, partial):
+    """
+    PUT/PATCH /booking, missing/invalid payload in request should cause fail.
+    """
+    response = restful_client.update_booking_by_id(
+        booking_id=valid_booking_id,
+        auth_header=api_key_auth,
+        partial_update=partial,
+        payload=""
+    )
+    assert response.status_code == 400

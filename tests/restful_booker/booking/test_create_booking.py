@@ -10,13 +10,23 @@ def test_create_booking_valid(restful_client):
     POST /booking, create new booking with valid payload.
     """
     booking_payload = build_booking(additional_needs="Coffee")
-    response = restful_client.create_booking(booking_payload)
+    response = restful_client.create_booking(payload=booking_payload)
     assert response.status_code == 200
 
     json_response = response.json()
     assert "bookingid" in json_response
     for k in json_response["booking"]:
         assert booking_payload[k] == json_response["booking"][k]
+
+
+@pytest.mark.smoke
+@pytest.mark.regression
+def test_create_booking_missing_payload(restful_client):
+    """
+    POST /booking, missing payload in request should cause fail.
+    """
+    response = restful_client.create_booking(payload=None)
+    assert response.status_code == 500
 
 
 @pytest.mark.regression
@@ -39,7 +49,7 @@ def test_create_booking_missing_required_values(
     booking_payload = build_booking(
         fname=fname, lname=lname, price=price, deposit=deposit_paid
     )
-    response = restful_client.create_booking(booking_payload)
+    response = restful_client.create_booking(payload=booking_payload)
     assert response.status_code == 500
 
 
@@ -62,5 +72,5 @@ def test_create_booking_invalid_payloads(restful_client, field_to_remove):
     booking_payload = build_booking()
     del booking_payload[field_to_remove]
 
-    response = restful_client.create_booking(booking_payload)
+    response = restful_client.create_booking(payload=booking_payload)
     assert response.status_code == 500
