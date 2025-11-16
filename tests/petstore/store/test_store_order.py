@@ -13,9 +13,8 @@ def test_place_order_success(petstore_client, valid_pet_id):
     response = petstore_client.create_store_order(payload=order_payload)
     assert response.status_code == 200
 
-    response_json = response.json()
     for k, v in order_payload.items():
-        assert response_json[k] == v
+        assert response.json()[k] == v
 
 
 @pytest.mark.regression
@@ -43,9 +42,8 @@ def test_get_order_by_id_success(petstore_client):
     response = petstore_client.create_store_order(order_payload)
     assert response.status_code == 200
 
-    response_json = response.json()
     for k, v in order_payload.items():
-        assert response_json[k] == v
+        assert response.json()[k] == v
 
 
 @pytest.mark.regression

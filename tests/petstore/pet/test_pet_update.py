@@ -18,9 +18,8 @@ def test_update_existing_pet_put_success(petstore_client, valid_pet_id):
     update_response = petstore_client.update_pet(update_payload)
     assert update_response.status_code == 200
 
-    response_json = update_response.json()
     for k, v in update_payload.items():
-        assert response_json[k] == v
+        assert update_response.json()[k] == v
 
 
 @pytest.mark.regression

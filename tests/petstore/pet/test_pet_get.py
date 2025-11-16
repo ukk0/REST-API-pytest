@@ -48,8 +48,8 @@ def test_get_pet_by_id(petstore_client, valid_pet_id):
 )
 def test_get_pet_by_bad_id(petstore_client, pet_id, status_code):
     """
-    GET /pet/{petId}, check responses missing, and bad IDs.
-    NOTE: The API does quite bad job of validating ID, responding
+    GET /pet/{petId}, check responses to missing and bad IDs.
+    NOTE: The API does quite poor job of validating ID, responding
     with 404s to bad format instead of 400.
     """
     response = petstore_client.get_pet_by_id(pet_id=pet_id)

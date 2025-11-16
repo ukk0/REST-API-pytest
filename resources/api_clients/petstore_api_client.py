@@ -93,7 +93,10 @@ class PetStoreAPIClient(BaseClient):
 
     def create_list_of_users(self, payload: List[Dict[str, Any]]) -> Response:
         return self._api_request(
-            url="pet", headers=self._add_headers(), method="POST", json=payload
+            url="user/createWithList",
+            headers=self._add_headers(),
+            method="POST",
+            json=payload,
         )
 
     def update_user(self, username: str, payload: Dict[str, Any]) -> Response:
