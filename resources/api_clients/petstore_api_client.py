@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Optional
 
 from requests import Response
+from pathlib import Path
 
 from resources.api_clients.base_api_client import BaseClient
 from resources.data_factories import build_query_params
@@ -16,14 +17,19 @@ class PetStoreAPIClient(BaseClient):
             url="pet", headers=self._add_headers(), method="POST", json=payload
         )
 
-    def upload_pet_image(self, pet_id: int, image_name: str) -> Response:
-        file_path = f"test_data/{image_name}"
+    def upload_pet_image(
+            self, pet_id: int, image_name: str, headers: Dict[str, str] = None,
+    ) -> Response:
+        # We need to specifically construct the path for when we call this from /tests
+        base = Path(__file__).resolve().parents[1]
+        file_path = base / "test_data" / image_name
+
         with open(file_path, "rb") as f:
             files = {"file": (image_name, f, "image/png")}
             return self._api_request(
                 url=f"pet/{pet_id}/uploadImage",
-                headers=self._add_headers(),
                 method="POST",
+                headers=headers if headers else {"User-Agent": "Automatic-API-test"},
                 files=files,
             )
 
