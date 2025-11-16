@@ -117,9 +117,12 @@ class PetStoreAPIClient(BaseClient):
             method="GET",
         )
 
-    def login_user(self, username: str, password: str) -> Response:
+    def login_user(self, username: str = None, password: str = None, skip_auth: bool = False) -> Response:
         query_params = build_query_params(username=username, password=password)
-        url = self._add_params_to_url(url="user/login", params=query_params)
+        if not skip_auth:
+            url = self._add_params_to_url(url="user/login", params=query_params)
+        else:
+            url = "user/login"
         return self._api_request(
             url=url,
             headers=self._add_headers(),
