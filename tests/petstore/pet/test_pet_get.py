@@ -38,7 +38,7 @@ def test_get_pet_by_id(petstore_client, valid_pet_id):
 @pytest.mark.parametrize(
     "pet_id, status_code",
     [
-        (100000000000, 404),
+        (-1, 404),
         (3.14159, 404),
         ("hundred", 404),
         (None, 404),

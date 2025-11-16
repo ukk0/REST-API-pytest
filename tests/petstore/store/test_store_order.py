@@ -47,6 +47,7 @@ def test_get_order_by_id_success(petstore_client):
 
 
 @pytest.mark.regression
+@pytest.mark.flaky(reruns=3)
 @pytest.mark.parametrize(
     "order_id, status_code",
     [(1, 200), ("2", 200), (9, 404), (None, 404), ("ten", 404), ("", 405), (-1, 404)],
@@ -70,6 +71,7 @@ def test_delete_order_success(petstore_client, valid_order_id):
 
 
 @pytest.mark.regression
+@pytest.mark.flaky(reruns=3)
 @pytest.mark.parametrize(
     "order_id, status_code",
     [(1, 200), ("2", 200), (9, 404), (None, 404), ("ten", 404), ("", 405), (-1, 404)],

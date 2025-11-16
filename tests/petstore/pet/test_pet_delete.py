@@ -29,7 +29,7 @@ def test_delete_pet_with_invalid_id(petstore_client, petstore_api_auth, pet_id):
 
 
 @pytest.mark.regression
-@pytest.mark.flaky(reruns=5)
+@pytest.mark.flaky(reruns=3)
 @pytest.mark.parametrize(
     "api_key, status_code",
     [
