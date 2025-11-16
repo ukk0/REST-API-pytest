@@ -17,7 +17,7 @@ def test_delete_pet_success(petstore_client, valid_pet_id, petstore_api_auth):
 
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.parametrize("pet_id", [10000000, 3.14159, "hundred", None])
+@pytest.mark.parametrize("pet_id", [-1, 3.14159, "hundred", None])
 def test_delete_pet_with_invalid_id(petstore_client, petstore_api_auth, pet_id):
     """
     DELETE /pet/{petId}, trying to delete pet with invalid/non-existent id value fails.
