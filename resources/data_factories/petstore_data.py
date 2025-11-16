@@ -14,3 +14,7 @@ def build_pet(
         "photoUrls": [photo_url],
         "status": status,
     }
+
+
+def build_petstore_auth_header(key: str) -> Dict[str, Any]:
+    return {"api_key": f"{key}"}

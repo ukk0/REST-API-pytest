@@ -48,7 +48,9 @@ class PetStoreAPIClient(BaseClient):
             method="GET",
         )
 
-    def delete_pet_by_id(self, pet_id: str, auth_header: Dict[str, str]) -> Response:
+    def delete_pet_by_id(
+            self, pet_id: str, auth_header: Optional[Dict[str, str]] = None
+    ) -> Response:
         return self._api_request(
             url=f"pet/{pet_id}",
             headers=self._add_headers(auth_header=auth_header),
