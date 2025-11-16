@@ -25,17 +25,19 @@ def test_get_booking_by_valid_id(restful_client, valid_booking_id):
 @pytest.mark.parametrize(
     "booking_id, expected_status",
     [
-        (1, 200),
+        (0, 200),
         (99999, 404),
         ("ten", 404),
         (None, 404),
     ],
     ids=["existing_id", "nonexistent_id", "invalid_id", "missing_id"],
 )
-def test_get_booking_by_id_variations(restful_client, booking_id, expected_status):
+def test_get_booking_by_id_variations(restful_client, valid_booking_id, booking_id, expected_status):
     """
     GET /booking/{id}, different id states.
     """
+    if booking_id == 0:
+        booking_id = valid_booking_id
     response = restful_client.get_booking_by_id(booking_id=booking_id)
     assert response.status_code == expected_status
 
