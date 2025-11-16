@@ -36,16 +36,15 @@ def test_get_pet_by_id(petstore_client, valid_pet_id):
 
 @pytest.mark.regression
 @pytest.mark.parametrize(
-    "pet_id, status_code", [
+    "pet_id, status_code",
+    [
         (100000000000, 404),
         (3.14159, 404),
         ("hundred", 404),
         (None, 404),
         ("", 405),
     ],
-    ids=[
-        "not_found_id", "float_id", "string_id", "none_id", "empty_string_id"
-    ]
+    ids=["not_found_id", "float_id", "string_id", "none_id", "empty_string_id"],
 )
 def test_get_pet_by_bad_id(petstore_client, pet_id, status_code):
     """

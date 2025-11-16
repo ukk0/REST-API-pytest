@@ -82,7 +82,8 @@ def test_update_booking_patch_valid(
         {"totalprice": None},
         {"new_field": 100},
         {"depositpaid": "Yes"},
-    ], ids=["invalid_price", "unsupported_field", "invalid_deposit"]
+    ],
+    ids=["invalid_price", "unsupported_field", "invalid_deposit"],
 )
 def test_partial_update_with_invalid_value(
     restful_client, valid_booking_id, api_key_auth, update_payload

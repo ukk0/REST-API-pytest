@@ -7,7 +7,9 @@ def test_successfully_upload_image(petstore_client, valid_pet_id):
     """
     POST pet/{pet_id}/uploadImage, add image for existing pet successfully.
     """
-    response = petstore_client.upload_pet_image(pet_id=valid_pet_id, image_name="dog.png")
+    response = petstore_client.upload_pet_image(
+        pet_id=valid_pet_id, image_name="dog.png"
+    )
     assert response.status_code == 200
 
     response_json = response.json()
@@ -35,7 +37,8 @@ def test_upload_image_with_invalid_format(petstore_client, valid_pet_id):
     POST pet/{pet_id}/uploadImage, add file with invalid format should fail.
     """
     response = petstore_client.upload_pet_image(
-        pet_id=valid_pet_id, image_name="dog.txt")
+        pet_id=valid_pet_id, image_name="dog.txt"
+    )
     assert response.status_code == 415
 
 
@@ -45,5 +48,8 @@ def test_upload_image_with_invalid_header(petstore_client, valid_pet_id):
     POST pet/{pet_id}/uploadImage, add image with invalid Content-Type header should fail.
     """
     response = petstore_client.upload_pet_image(
-        pet_id=valid_pet_id, image_name="dog.png", headers=petstore_client._add_headers())
+        pet_id=valid_pet_id,
+        image_name="dog.png",
+        headers=petstore_client._add_headers(),
+    )
     assert response.status_code == 415

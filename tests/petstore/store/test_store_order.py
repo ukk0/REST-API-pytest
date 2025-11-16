@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_place_order_success():
     """
     POST /store/order, place an order for an existing pet.

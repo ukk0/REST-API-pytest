@@ -32,7 +32,9 @@ def test_get_booking_by_valid_id(restful_client, valid_booking_id):
     ],
     ids=["existing_id", "nonexistent_id", "invalid_id", "missing_id"],
 )
-def test_get_booking_by_id_variations(restful_client, valid_booking_id, booking_id, expected_status):
+def test_get_booking_by_id_variations(
+    restful_client, valid_booking_id, booking_id, expected_status
+):
     """
     GET /booking/{id}, different id states.
     """

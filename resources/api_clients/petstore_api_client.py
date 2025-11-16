@@ -1,7 +1,7 @@
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from requests import Response
-from pathlib import Path
 
 from resources.api_clients.base_api_client import BaseClient
 from resources.data_factories import build_query_params
@@ -18,7 +18,10 @@ class PetStoreAPIClient(BaseClient):
         )
 
     def upload_pet_image(
-            self, pet_id: int, image_name: str, headers: Dict[str, str] = None,
+        self,
+        pet_id: int,
+        image_name: str,
+        headers: Dict[str, str] = None,
     ) -> Response:
         # We need to specifically construct the path for when we call this from /tests
         base = Path(__file__).resolve().parents[1]
@@ -47,15 +50,13 @@ class PetStoreAPIClient(BaseClient):
         self, query_params: Optional[Dict[str, str]] = None
     ) -> Response:
         return self._api_request(
-            url=self._add_params_to_url(
-                url="pet/findByStatus", params=query_params
-            ),
+            url=self._add_params_to_url(url="pet/findByStatus", params=query_params),
             headers=self._add_headers(),
             method="GET",
         )
 
     def delete_pet_by_id(
-            self, pet_id: str, auth_header: Optional[Dict[str, str]] = None
+        self, pet_id: str, auth_header: Optional[Dict[str, str]] = None
     ) -> Response:
         return self._api_request(
             url=f"pet/{pet_id}",
@@ -117,7 +118,9 @@ class PetStoreAPIClient(BaseClient):
             method="GET",
         )
 
-    def login_user(self, username: str = None, password: str = None, skip_auth: bool = False) -> Response:
+    def login_user(
+        self, username: str = None, password: str = None, skip_auth: bool = False
+    ) -> Response:
         query_params = build_query_params(username=username, password=password)
         if not skip_auth:
             url = self._add_params_to_url(url="user/login", params=query_params)

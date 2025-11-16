@@ -28,12 +28,15 @@ def test_add_pet_with_missing_payload(petstore_client):
 
 
 @pytest.mark.regression
-@pytest.mark.parametrize("field, wrong_value", [
-    ("id", "ten"),
-    ("name", {}),
-    ("photoUrls", "not_a_list"),
-    ("status", []),
-])
+@pytest.mark.parametrize(
+    "field, wrong_value",
+    [
+        ("id", "ten"),
+        ("name", {}),
+        ("photoUrls", "not_a_list"),
+        ("status", []),
+    ],
+)
 def test_add_pet_with_invalid_data_types(petstore_client, field, wrong_value):
     """
     POST /pet, should fail when invalid data type is provided.

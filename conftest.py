@@ -2,7 +2,9 @@ import pytest
 
 from resources.api_clients import PetStoreAPIClient, RestfulAPIClient
 from resources.data_factories import (build_api_key_header, build_auth_payload,
-                                      build_booking, build_token_header, build_pet, build_petstore_auth_header)
+                                      build_booking, build_pet,
+                                      build_petstore_auth_header,
+                                      build_token_header)
 
 FAKE_RESTFUL_API_KEY = "YWRtaW46cGFzc3dvcmQxMjM="
 FAKE_PETSTORE_API_KEY = "special-key"

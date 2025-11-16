@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_create_user_success():
     """
     POST /user, create a user successfully.

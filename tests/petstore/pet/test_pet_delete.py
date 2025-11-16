@@ -31,11 +31,12 @@ def test_delete_pet_with_invalid_id(petstore_client, petstore_api_auth, pet_id):
 @pytest.mark.regression
 @pytest.mark.flaky(reruns=5)
 @pytest.mark.parametrize(
-    "api_key, status_code", [
+    "api_key, status_code",
+    [
         ("", 404),
         ("wrong-key", 404),
         (None, 404),
-    ]
+    ],
 )
 def test_delete_pet_without_auth(petstore_client, valid_pet_id, api_key, status_code):
     """
@@ -50,6 +51,5 @@ def test_delete_pet_without_auth(petstore_client, valid_pet_id, api_key, status_
             pet_id=valid_pet_id, auth_header=header
         )
     else:
-        response = petstore_client.delete_pet_by_id(
-            pet_id=valid_pet_id)
+        response = petstore_client.delete_pet_by_id(pet_id=valid_pet_id)
     assert response.status_code == status_code
