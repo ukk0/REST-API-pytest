@@ -52,7 +52,16 @@ def valid_order_id(petstore_client):
 
 @pytest.fixture(scope="function")
 def valid_user_id(petstore_client):
-    return petstore_client.create_user(payload=build_user()).json()["id"]
+    return int(petstore_client.create_user(payload=build_user()).json()["message"])
+
+
+@pytest.fixture(scope="function")
+def valid_username(petstore_client):
+    """
+    The create user endpoint does not return username in response, we can only
+    control what we provide in the payload.
+    """
+    return petstore_client.create_user(payload=build_user(username="Keijo"))
 
 
 @pytest.fixture(scope="session")

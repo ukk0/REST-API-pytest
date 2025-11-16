@@ -13,9 +13,8 @@ def test_add_new_pet_success(petstore_client):
     response = petstore_client.create_pet(payload=pet_payload)
     assert response.status_code == 200
 
-    json_response = response.json()
     for key in pet_payload:
-        assert pet_payload[key] == json_response[key]
+        assert pet_payload[key] == response.json()[key]
 
 
 @pytest.mark.regression
