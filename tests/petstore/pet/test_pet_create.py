@@ -45,6 +45,7 @@ def test_add_pet_with_invalid_data_types(petstore_client, field, wrong_value):
     assert response.status_code == 500
 
 
+@pytest.mark.regression
 @pytest.mark.skip(
     reason="Known API issue: Endpoint returns 200 despite required field missing."
 )
