@@ -21,6 +21,15 @@ def test_update_existing_pet_put_success(petstore_client, valid_pet_id):
 
 
 @pytest.mark.regression
+def test_update_pet_with_missing_payload(petstore_client):
+    """
+    PUT /pet, should fail when no payload is provided.
+    """
+    response = petstore_client.update_pet(payload=None)
+    assert response.status_code == 405
+
+
+@pytest.mark.regression
 @pytest.mark.skip(
     reason="Known API issue: Endpoint returns 200 without correctly validating ID."
 )
